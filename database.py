@@ -119,18 +119,5 @@ class Database:
         finally:
             session.close()
 
-    def reset_collection_stats(self):
-        """Reset the traces_collected count for all websites."""
-        session = self.Session()
-        try:
-            session.query(CollectionStats).update({CollectionStats.traces_collected: 0})
-            session.commit()
-            print("Collection stats reset to 0 for all websites.")
-        except Exception as e:
-            session.rollback()
-            print(f"Error resetting collection stats: {str(e)}")
-        finally:
-            session.close()
-
 
 db: Database = None
