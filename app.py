@@ -64,5 +64,14 @@ def clear_results():
     stored_stats.clear()
     return jsonify({'success': True})
 
+# ==== ADDED: Provide all results to frontend ====
+@app.route('/api/get_results', methods=['GET'])
+def get_results():
+    return jsonify({
+        "traces": stored_traces,
+        "heatmaps": stored_heatmaps,
+        "stats": stored_stats
+    })
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
